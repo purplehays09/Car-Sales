@@ -10,7 +10,7 @@ const AdditionalFeatures = props => {
       <h4>Additional Features</h4>
       {props.additionalFeatures.length ? (
         <ol type="1">
-          {props.additionalFeatures.map(item => (
+          {props.additionalFeatures.filter(item => !item.added).map(item => (
             <AdditionalFeature key={item.id} feature={item} onClick={props.updateFeatures}/>
           ))}
         </ol>
