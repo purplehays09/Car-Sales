@@ -1,5 +1,8 @@
 import React from 'react';
 import AdditionalFeature from './AdditionalFeature';
+import {connect} from 'react-redux';
+import {toggleFeature, updateFeatures} from '../actions'
+
 
 const AdditionalFeatures = props => {
   return (
@@ -7,8 +10,8 @@ const AdditionalFeatures = props => {
       <h4>Additional Features</h4>
       {props.additionalFeatures.length ? (
         <ol type="1">
-          {props.additionalFeatures.map(item => (
-            <AdditionalFeature key={item.id} feature={item} />
+          {props.additionalFeatures.filter(item => !item.added).map(item => (
+            <AdditionalFeature key={item.id} feature={item} onClick={props.updateFeatures}/>
           ))}
         </ol>
       ) : (
@@ -18,4 +21,15 @@ const AdditionalFeatures = props => {
   );
 };
 
-export default AdditionalFeatures;
+function mapStateToProps(state){
+  return {
+    additionalPrice:state.additionalPrice,
+    price:state.price,
+    additionalFeatures:state.additionalFeatures
+  }
+
+}
+
+export default connect(mapStateToProps, {toggleFeature, updateFeatures})(AdditionalFeatures);
+
+
