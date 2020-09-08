@@ -23,3 +23,12 @@ export const carReducer = (state,action) => {
             return state
     }
 }
+
+/*
+I don't get the need for redux when you have custom hooks
+
+I am under the assumption that all of the global business logic needs to be stored in redux
+
+What is the proper way to store the added features? a list or should I just add an attribute to the initial state's 'additionalFeatures'
+
+*/
